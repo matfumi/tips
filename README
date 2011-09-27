@@ -1,4 +1,26 @@
+TIPS
+=============
+
+Description
+-------
 This tool helps you retrieve the most useful linux commands.
 This script performs a search through tags in a database.
-Usage: ./tips.py [TAG]
+
+Install
+-------
+1) Check Python 2.7 (python -V) or install it
+2) Copy tips.py and tips.sqlite in same directory
+3) [OPTIONAL] Open tips.py to congfigure it
+
+Usage
+-------
+From terminal:
+	./tips.py [TAG]
+
+Search commands by keyword [TAG]
+
 If [TAG] is 'all', you can retrieve all database commands.
+
+Arguments
+-------
+--help		Get Help!

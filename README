@@ -10,7 +10,9 @@ Install
 -------
 1) Check Python 2.7 (python -V) or install it
 2) Copy tips.py and tips.sqlite in same directory
-3) [OPTIONAL] Open tips.py to congfigure it
+3) [OPTIONAL] Open tips.py to configure it
+4) [OPTIONAL - RECOMMEND] Use "$ ln -s /path/to/tips/tips.py /usr/bin/tips" (as root) for comfortable execution (/bla/bla/bla/tips.py -> tips)
+
 
 Usage
 -------
@@ -23,7 +25,8 @@ If [TAG] is 'all', you can retrieve all database commands.
 
 Arguments
 -------
---help		Get Help!
+	--help		Get Help!
+	--check		Check for program and database updates from GitHub
 
 
 Help

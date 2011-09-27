@@ -19,20 +19,44 @@
 ## CONFIGURATION ##
 tipsdb = "" 			#Path of tips database (leave blank if in current directory)
 colorcommand = "\033[93m"	#Color of command
+version_tips = 1		#NOT edit - ONLY for hacks!
 
 
 import sys
 import sqlite3
+from urllib2 import urlopen
 
-#Get arguments
+
+##
+# Get arguments
+##
 try:
 	argument = sys.argv[1]
 except:
 	print "	Usage: ./tips.py [TAG]"
-	print "	--help for more informations\n"
+	print "	--help for more informations"
+	print "	--check for program and database updates from GitHub\n"
 	sys.exit()
 
-#Only --help command
+##
+# Tips DB config
+#
+if tipsdb == "":
+	tipsdb = "tips.sqlite"
+
+## Connect to sqlite db
+try:
+	con = sqlite3.connect(tipsdb)
+except:
+	print "	Can't locate tips.sqlite in current directory!\n"
+	sys.exit()
+
+
+##
+# Parse -- commands
+##
+
+## --help
 if argument == "--help":
 	print "	This tool helps you retrieve the most useful linux commands."
 	print "	This script performs a search through tags in a database."
@@ -40,17 +64,17 @@ if argument == "--help":
 	print "	If [TAG] is 'all', you can retrieve all database commands."
 	sys.exit()
 
+## --check
+elif argument == "--check":
+	data = urlopen("https://raw.github.com/merto/tips/master/README").read()
+	if data > version_tips:
+		print "New version!! Get it on https://github.com/merto/tips"
+	else:
+		print "Your version is updated!"
 
-#Tips DB config
-if tipsdb == "":
-	tipsdb = "tips.sqlite"
-
-#Connect to sqlite db
-try:
-	con = sqlite3.connect(tipsdb)
-except:
-	print "	Can't locate tips.sqlite in current directory!\n"
 	sys.exit()
+
+
 
 
 print "Tag search: " + argument

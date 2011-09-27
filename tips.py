@@ -66,27 +66,25 @@ if argument == "--help":
 
 ## --check
 elif argument == "--check":
+
+	# Script version check
 	ur = urlopen("https://raw.github.com/merto/tips/master/version.cfg").read()
-	contents = ur.readlines()
+	if int(ur) > int(version_tips):
+		print "New version of tips!! Get it on https://github.com/merto/tips"
+	else:
+		print "Your tips version is updated!"
 
-	for line in contents:
-		# Script version check
-		if i == 0:
-			if int(line) > int(version_tips):
-				print "New version of tips!! Get it on https://github.com/merto/tips"
-			else:
-				print "Your tips version is updated!"
-			i++
-		# DB version check
-		elif i == 1
-			cur = con.cursor()
-			cur.execute('SELECT value FROM config WHERE key = "version_db";')
-			version_db = cur.fetchone()[0]
+	# Script version check
+	ur = urlopen("https://raw.github.com/merto/tips/master/version-db.cfg").read()
 
-			if int(line) > int(version_db):
-				print "New version of DB!! Get it on https://github.com/merto/tips"
-			else:
-				print "Your DB version is updated!"
+	cur = con.cursor()
+	cur.execute('SELECT value FROM config WHERE key = "version_db";')
+	version_db = cur.fetchone()[0]
+
+	if int(ur) > int(version_db):
+		print "New version of DB!! Get it on https://github.com/merto/tips"
+	else:
+		print "Your DB version is updated!"
 
 	sys.exit()
 

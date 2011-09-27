@@ -17,9 +17,12 @@
 
 
 ## CONFIGURATION ##
-tipsdb = "" 			#Path of tips database (leave blank if in current directory)
+tipsdb = "" 			#Path of tips database (leave blank if it's in current directory)
+				#Configure it if you've symlink this script!!!
+
 colorcommand = "\033[93m"	#Color of command
-version_tips = 2		#NOT edit - ONLY for hacks!
+
+version_tips = 3		#NOT edit - ONLY for hacks!
 
 
 import sys
@@ -66,25 +69,27 @@ if argument == "--help":
 
 ## --check
 elif argument == "--check":
+	try:
+		# Script version check
+		ur = urlopen("https://raw.github.com/merto/tips/master/version.cfg").read()
+		if int(ur) > int(version_tips):
+			print "New version of tips!! Get it on https://github.com/merto/tips"
+		else:
+			print "Your tips version is updated!"
 
-	# Script version check
-	ur = urlopen("https://raw.github.com/merto/tips/master/version.cfg").read()
-	if int(ur) > int(version_tips):
-		print "New version of tips!! Get it on https://github.com/merto/tips"
-	else:
-		print "Your tips version is updated!"
+		# Script version check
+		ur = urlopen("https://raw.github.com/merto/tips/master/version-db.cfg").read()
 
-	# Script version check
-	ur = urlopen("https://raw.github.com/merto/tips/master/version-db.cfg").read()
+		cur = con.cursor()
+		cur.execute('SELECT value FROM config WHERE key = "version_db";')
+		version_db = cur.fetchone()[0]
 
-	cur = con.cursor()
-	cur.execute('SELECT value FROM config WHERE key = "version_db";')
-	version_db = cur.fetchone()[0]
-
-	if int(ur) > int(version_db):
-		print "New version of DB!! Get it on https://github.com/merto/tips"
-	else:
-		print "Your DB version is updated!"
+		if int(ur) > int(version_db):
+			print "New version of DB!! Get it on https://github.com/merto/tips"
+		else:
+			print "Your DB version is updated!"
+	except:
+		print "There was an error while retrieve information from GitHub. Internet connection is OK?"
 
 	sys.exit()
 
@@ -93,18 +98,21 @@ elif argument == "--check":
 
 print "Tag search: " + argument
 
-#Search tag in db
-cur = con.cursor()
+try:
+	#Search tag in db
+	cur = con.cursor()
 
-#"all" tag
-if argument != "all":
-	sqlwhere = ' WHERE tags LIKE "%' + argument + '%" OR command LIKE "%' + argument + '%"'
-else:
-	sqlwhere = ''
+	#"all" tag
+	if argument != "all":
+		sqlwhere = ' WHERE tags LIKE "%' + argument + '%" OR command LIKE "%' + argument + '%"'
+	else:
+		sqlwhere = ''
 
-cur.execute('SELECT command,description FROM commands' + sqlwhere + ';')
-for row in cur:
-    print "	" + colorcommand + row[0] + "\033[0m" + "  >> " + row[1]
+	cur.execute('SELECT command,description FROM commands' + sqlwhere + ';')
+	for row in cur:
+	    print "	" + colorcommand + row[0] + "\033[0m" + "  >> " + row[1]
+except:
+	print "There was an error with database file. Have you configured me properly?"
 
 #Close connection
 con.close()

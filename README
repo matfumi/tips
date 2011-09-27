@@ -12,6 +12,7 @@ Install
 2) Copy tips.py and tips.sqlite in same directory
 3) [OPTIONAL] Open tips.py to configure it
 4) [OPTIONAL - RECOMMEND] Use "$ ln -s /path/to/tips/tips.py /usr/bin/tips" (as root) for comfortable execution (/bla/bla/bla/tips.py -> tips)
+	!! WARNING: if you symlink tips.py, configure the -tipsdb- setting !!
 
 
 Usage
@@ -26,7 +27,7 @@ If [TAG] is 'all', you can retrieve all database commands.
 Arguments
 -------
 	--help		Get Help!
-	--check		Check for program and database updates from GitHub
+	--check		Check for program and database updates from GitHub (internet connection required)
 
 
 Help

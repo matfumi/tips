@@ -19,7 +19,7 @@
 ## CONFIGURATION ##
 tipsdb = "" 			#Path of tips database (leave blank if in current directory)
 colorcommand = "\033[93m"	#Color of command
-version_tips = 1		#NOT edit - ONLY for hacks!
+version_tips = 2		#NOT edit - ONLY for hacks!
 
 
 import sys
@@ -66,11 +66,27 @@ if argument == "--help":
 
 ## --check
 elif argument == "--check":
-	data = urlopen("https://raw.github.com/merto/tips/master/README").read()
-	if data > version_tips:
-		print "New version!! Get it on https://github.com/merto/tips"
-	else:
-		print "Your version is updated!"
+	ur = urlopen("https://raw.github.com/merto/tips/master/version.cfg").read()
+	contents = ur.readlines()
+
+	for line in contents:
+		# Script version check
+		if i == 0:
+			if int(line) > int(version_tips):
+				print "New version of tips!! Get it on https://github.com/merto/tips"
+			else:
+				print "Your tips version is updated!"
+			i++
+		# DB version check
+		elif i == 1
+			cur = con.cursor()
+			cur.execute('SELECT value FROM config WHERE key = "version_db";')
+			version_db = cur.fetchone()[0]
+
+			if int(line) > int(version_db):
+				print "New version of DB!! Get it on https://github.com/merto/tips"
+			else:
+				print "Your DB version is updated!"
 
 	sys.exit()
 

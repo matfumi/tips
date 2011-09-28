@@ -22,7 +22,7 @@ tipsdb = "" 			#Path of tips database (leave blank if it's in current directory)
 
 colorcommand = "\033[93m"	#Color of command
 
-version_tips = 3		#NOT edit - ONLY for hacks!
+version_tips = 4 		#NOT edit - ONLY for hacks!
 
 
 import sys
@@ -75,7 +75,7 @@ elif argument == "--check":
 		if int(ur) > int(version_tips):
 			print "New version of tips!! Get it on https://github.com/merto/tips"
 		else:
-			print "Your tips version is updated!"
+			print "Your tips is updated!"
 
 		# Script version check
 		ur = urlopen("https://raw.github.com/merto/tips/master/version-db.cfg").read()
@@ -87,13 +87,11 @@ elif argument == "--check":
 		if int(ur) > int(version_db):
 			print "New version of DB!! Get it on https://github.com/merto/tips"
 		else:
-			print "Your DB version is updated!"
+			print "Your DB of tips is updated!"
 	except:
 		print "There was an error while retrieve information from GitHub. Internet connection is OK?"
 
 	sys.exit()
-
-
 
 
 print "Tag search: " + argument

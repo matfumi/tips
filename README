@@ -6,6 +6,7 @@ Description
 This tool helps you retrieve the most useful linux commands.
 This script performs a search through tags in a database.
 
+
 Install
 -------
 1) Check Python 2.7 (python -V) or install it
@@ -23,6 +24,7 @@ From terminal:
 Search commands by keyword [TAG]
 
 If [TAG] is 'all', you can retrieve all database commands.
+
 
 Arguments
 -------
@@ -47,11 +49,11 @@ Current commands:
 	free -m  >> Memory statistics (-m in Mega)
 	mount /dir  >> Mount filesystem (in fstab)
 	umount -f /dir  >> Umount filesystem (-f force for NFS)
-	ps aux | grep [PROCESS]  >> Show process statistics for [PROCESS]
-	kill -9 [PID]  >> Kill a process (by PID)
+	ps aux | grep PROCESS  >> Show process statistics for PROCESS
+	kill -9 PID  >> Kill a process (by PID)
 	w  >> Show current logged in users
 	top  >> Monitor active processes ([s] update speed)
-	free -m -s N  >> Disk Free (-s continuisly ad update every N seconds)
+	free -m -s N  >> Disk Free (-s continuously ad update every N seconds)
 	whoami  >> Show current user
 	logname  >> Show original logged in user
 	useradd USERNAME  >> Add USERNAME to users
@@ -68,4 +70,7 @@ Current commands:
 	locate FILE  >> Locate FILE on filesystem
 	whereis FILE  >> Locate the path of FILE like commands
 	traceroute HOST  >> Trace routes to HOST
+	setfacl -R -m user:USERNAME:rwx DIRECTORY  >> ACL: add USERNAME rwx permission to ACL list for DIRECTORY
+	rpm -i packet.rpm  >> FEDORA/RH: Install packet.rpm
+	netstat -ant | grep PORT  >> Get connections on PORT
 

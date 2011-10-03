@@ -37,40 +37,24 @@ Help
 If you want add a command in database, send me a message on GitHub!!! NOW!
 
 
-Current commands:
-	tar czf file.tar.gz mydir  >> Tar & Gzip a directory
+Currently the database covers the following executables (for a complete list: ./tips.py -all )
+	tar , zip, unzip, df, free, mount, umount, ps, grep, kill, w, top,
+	whoami, logname, useradd, userdel, usermod, passwd, su, uname, watch,
+	crontab, find, locate, whereis, traceroute, acl, rpm, netstat, setfacl,
+	ssh, ssh-copy-id
+
+Some examples (the most complex!):
 	tar -zxvf file.tar.gz  >> Untar tar.gz files
 	tar -C /myfolder -zxvf file.tar.gz  >> Untar tar.gz file in a specified directory
-	zip -r myfile.zip dirname   >> Compress a directory to .zip
-	unzip myfile.zip  >> Unzip a .zip file
-	df -h  >> Disk Free (-h in human readable)
 	du -h --max-depth=1  >> Disk usage (only subdir in current dir)
 	du -h --max-depth=1 | sort -n  >> Disk usage by size (only subdir in current dir)
 	free -m  >> Memory statistics (-m in Mega)
-	mount /dir  >> Mount filesystem (in fstab)
-	umount -f /dir  >> Umount filesystem (-f force for NFS)
-	ps aux | grep PROCESS  >> Show process statistics for PROCESS
-	kill -9 PID  >> Kill a process (by PID)
-	w  >> Show current logged in users
-	top  >> Monitor active processes ([s] update speed)
 	free -m -s N  >> Disk Free (-s continuously ad update every N seconds)
-	whoami  >> Show current user
-	logname  >> Show original logged in user
-	useradd USERNAME  >> Add USERNAME to users
-	userdel -r USERNAME  >> Delete USERNAME from users (-r delete home directory)
-	usermod -G GROUP USER  >> Change GROUP of USER
 	usermod -a -G GROUP USER  >> Add USER to GROUP
 	passwd USER  >> Change password of USER
 	su - -c "COMMAND"  >> Execute COMMAND by superuser
 	uname -a  >> Show current Kernel stats
 	watch -n [S] COMMAND  >> Execute COMMAND every S seconds
-	crontab -e  >> Show current user's crontab
 	crontab -u USER -e  >> Show USER's crontab
-	find / -type f -name FILE -print  >> Find FILE on entire filesystem
-	locate FILE  >> Locate FILE on filesystem
-	whereis FILE  >> Locate the path of FILE like commands
-	traceroute HOST  >> Trace routes to HOST
 	setfacl -R -m user:USERNAME:rwx DIRECTORY  >> ACL: add USERNAME rwx permission to ACL list for DIRECTORY
-	rpm -i packet.rpm  >> FEDORA/RH: Install packet.rpm
 	netstat -ant | grep PORT  >> Get connections on PORT
-

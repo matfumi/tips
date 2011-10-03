@@ -73,9 +73,9 @@ elif argument == "--check":
 		# Script version check
 		ur = urlopen("https://raw.github.com/merto/tips/master/version.cfg").read()
 		if int(ur) > int(version_tips):
-			print "New version of tips!! Get it on https://github.com/merto/tips"
+			print "	New version of tips!! Get it on https://github.com/merto/tips"
 		else:
-			print "Your tips is updated!"
+			print "	Your tips is updated!"
 
 		# Script version check
 		ur = urlopen("https://raw.github.com/merto/tips/master/version-db.cfg").read()
@@ -85,9 +85,9 @@ elif argument == "--check":
 		version_db = cur.fetchone()[0]
 
 		if int(ur) > int(version_db):
-			print "New version of DB!! Get it on https://github.com/merto/tips"
+			print "	New version of DB!! Get it on https://github.com/merto/tips"
 		else:
-			print "Your DB of tips is updated!"
+			print "	Your DB of tips is updated!"
 	except:
 		print "There was an error while retrieve information from GitHub. Internet connection is OK?"
 
@@ -102,7 +102,7 @@ try:
 
 	#"all" tag
 	if argument != "all":
-		sqlwhere = ' WHERE tags LIKE "%' + argument + '%" OR command LIKE "%' + argument + '%"'
+		sqlwhere = ' WHERE tags LIKE "%' + argument + '%" OR command LIKE "%' + argument + '%" OR description LIKE "%' + argument + '%"'
 	else:
 		sqlwhere = ''
 
